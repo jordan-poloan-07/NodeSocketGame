@@ -42,7 +42,7 @@ serverSocket.sockets.on('connection', function(socket) {
         users[socket.id] = objs[Object.keys(users).length];
 
         status_emitter();
-        
+
         socket.on('keypress', function(data) {
             users[data.user].x = data.x;
             users[data.user].y = data.y;
@@ -60,16 +60,15 @@ serverSocket.sockets.on('connection', function(socket) {
 
 setInterval(function() {
     status_emitter();
-}, 1000);
+}, 22); // 45fps
 
 function status_emitter() {
     var userCount = Object.keys(users).length;
     var status = (userCount < 2) ? 'waiting' : 'playing';
-    var theUsers = users;
-    serverSocket.sockets.emit('status', {
+    serverSocket.sockets.volatile.emit('status', {
         status: status,
-        users: theUsers
+        users: users
     });
 }
 
-console.log("Established server : " + SERVER + " in port " + PORT);
+console.log("Established server at " + SERVER + " in port " + PORT);

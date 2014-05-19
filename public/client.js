@@ -30,8 +30,8 @@ $(function() {
         xVal.text(myObject.x);
         yVal.text(myObject.y);
 
-        xValEnemy.text(myEnemyObject.x);
-        yValEnemy.text(myEnemyObject.y);
+        xValEnemy.text(myEnemyObject.x || 'waiting');
+        yValEnemy.text(myEnemyObject.y || 'waiting');
 
     });
 
