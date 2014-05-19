@@ -37,9 +37,11 @@ var serverSocket = socketIO.listen(server.listen(PORT));
 
 serverSocket.sockets.on('connection', function(socket) {
 
-    if (Object.keys(users).length < 2) {
+    var userCount = Object.keys(users).length;
 
-        users[socket.id] = objs[Object.keys(users).length];
+    if (userCount < 2) {
+
+        users[socket.id] = objs[userCount];
 
         status_emitter();
 
