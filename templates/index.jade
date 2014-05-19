@@ -1,0 +1,22 @@
+html
+    head
+        title= "Socket and Objects"
+        script(src='/jquery-1.10.2.min.js')
+        script(type='text/javascript').
+            serverAddr = "!{serverAddr}";
+            port = "!{port}";
+        script(src='/client.js')
+        script(src='/socket.io/socket.io.js')
+    body
+        #content
+        #leobject
+            #you
+                span.x
+                span.
+                    ,
+                span.y 
+            #enemy
+                span.x
+                span.
+                    ,
+                span.y
