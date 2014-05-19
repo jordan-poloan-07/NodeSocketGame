@@ -33,7 +33,9 @@ server.get("/", function(req, res) {
     });
 });
 
-var serverSocket = socketIO.listen(server.listen(PORT));
+var serverSocket = socketIO.listen(server.listen(PORT), {
+    log: false
+});
 
 serverSocket.sockets.on('connection', function(socket) {
 
@@ -46,8 +48,8 @@ serverSocket.sockets.on('connection', function(socket) {
         status_emitter();
 
         socket.on('keypress', function(data) {
-            users[data.user].x = data.x;
-            users[data.user].y = data.y;
+            users[socket.id].x = data.x;
+            users[socket.id].y = data.y;
         });
 
         socket.on('disconnect', function() {

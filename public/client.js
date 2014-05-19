@@ -1,5 +1,7 @@
 $(function() {
 
+    var socket = io.connect('http://' + serverAddr + ':' + port);
+
     var content = $("#content");
     var object = $("#leobject");
 
@@ -9,11 +11,11 @@ $(function() {
     var xValEnemy = $("#enemy span.x");
     var yValEnemy = $("#enemy span.y");
 
-    var socket = io.connect('http://' + serverAddr + ':' + port);
-
     var status = "waiting";
     var myObject = {};
 
+    // receive updates of the object's
+    // status from the server
     socket.on('status', function(data) {
 
         status = data.status;
@@ -40,7 +42,8 @@ $(function() {
         event.preventDefault();
 
         if (status === "waiting") {
-            // because you're not allowed to jumpstart
+            // because you're not allowed to move
+            // when there are less than 2 players
             return;
         }
 
@@ -62,7 +65,6 @@ $(function() {
         }
 
         socket.emit('keypress', {
-            user: socket.socket.sessionid,
             x: myObject.x,
             y: myObject.y
         });
