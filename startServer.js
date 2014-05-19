@@ -64,7 +64,7 @@ serverSocket.sockets.on('connection', function(socket) {
 
 setInterval(function() {
     status_emitter();
-}, 22); // 45fps
+}, 50);
 
 function status_emitter() {
     var userCount = Object.keys(users).length;

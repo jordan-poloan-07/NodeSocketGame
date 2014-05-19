@@ -32,8 +32,8 @@ $(function() {
         xVal.text(myObject.x);
         yVal.text(myObject.y);
 
-        xValEnemy.text(myEnemyObject.x || 'waiting');
-        yValEnemy.text(myEnemyObject.y || 'waiting');
+        xValEnemy.text(myEnemyObject ? myEnemyObject.x : 'waiting');
+        yValEnemy.text(myEnemyObject ? myEnemyObject.y : 'waiting');
 
     });
 
@@ -68,7 +68,7 @@ $(function() {
             x: myObject.x,
             y: myObject.y
         });
-
+        
     });
 
 });
